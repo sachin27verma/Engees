@@ -28,14 +28,14 @@ const Login = ({ handleLogin, isAuthenticated }) => {
     // axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
     try {
       const response = await fetch(
-        "https://engeesserver.vercel.app/api/login",
+        "http://localhost:3001/api/login",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-          mode: 'no-cors',
+          // mode: 'no-cors',
         }
       );
 

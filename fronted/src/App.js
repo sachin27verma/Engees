@@ -16,13 +16,13 @@ const App = () => {
       if (token) {
         try {
           const response = await axios.get(
-            "https://engeesserver.vercel.app/api/profile",
+            "http://localhost:3001/api/profile",
             {
               headers: {
                 authorization: `${token}`,
                 
               },
-              mode:'no-core',
+              // mode:'no-core',
             }
           );
           // console.log("Authenticated");

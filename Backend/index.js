@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { check, validationResult } from 'express-validator';
 import dotenv from 'dotenv'; // Import dotenv
+import axios from 'axios';
 
 dotenv.config();
 
@@ -13,8 +14,14 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:3000', // Allow requests from your React app's origin
+  origin: 'http://localhost:3000', 
+  // Allow requests from your React app's origin
 }));
+
+axios.defaults.baseURL = "https://";
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
+    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
