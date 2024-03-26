@@ -20,7 +20,9 @@ const App = () => {
             {
               headers: {
                 authorization: `${token}`,
+                
               },
+              mode:'no-core',
             }
           );
           // console.log("Authenticated");

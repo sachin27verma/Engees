@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import cors from 'cors';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import cors from "cors";
 
 const Login = ({ handleLogin, isAuthenticated }) => {
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Login = ({ handleLogin, isAuthenticated }) => {
     // Check if user is already logged in
 
     if (isAuthenticated) {
-      navigate('/'); // Redirect to home if already logged in
+      navigate("/"); // Redirect to home if already logged in
     }
   }, [isAuthenticated, navigate]);
 
@@ -23,27 +22,30 @@ const Login = ({ handleLogin, isAuthenticated }) => {
 
     // Create a data object with username and password
     const data = { username, password };
-    axios.defaults.baseURL = "https://";
- axios.defaults.headers.post["Content-Type"] =
-        "application/json;charset=utf-8";
-      axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+    // axios.defaults.baseURL = "https://";
+    // axios.defaults.headers.post["Content-Type"] =
+    //   "application/json;charset=utf-8";
+    // axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
     try {
-      const response = await fetch("https://engeesserver.vercel.app/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://engeesserver.vercel.app/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+          mode: 'no-cors',
+        }
+      );
 
-      
       if (response.ok) {
         const res = await response.json();
         localStorage.setItem("token", res.token);
         handleLogin(res.token);
         setUsername("");
         setPassword("");
-        navigate('/');
+        navigate("/");
       } else {
         throw new Error("Invalid credentials");
       }

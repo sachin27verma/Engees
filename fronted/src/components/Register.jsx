@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Register = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -32,7 +33,10 @@ const Register = () => {
       return;
     }
 
+    
+    
     // Create data object for POST request
+
     const data = { username, password };
 
     try {

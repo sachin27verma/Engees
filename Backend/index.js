@@ -12,9 +12,9 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
-
-// console.log(process.env.MONGODB_URL)
+app.use(cors({
+  origin: 'http://localhost:3000', // Allow requests from your React app's origin
+}));
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
@@ -41,10 +41,6 @@ app.post(
   ],
   async (req, res) => {
     const errors = validationResult(req);
-    res.setHeader('Access-Control-Allow-Origin', 'https://engees-login-register.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -66,10 +62,6 @@ app.post(
 
 app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
-  res.setHeader('Access-Control-Allow-Origin', 'https://engees-login-register.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   try {
     const user = await User.findOne({ username });
