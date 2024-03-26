@@ -16,7 +16,7 @@ const App = () => {
       if (token) {
         try {
           const response = await axios.get(
-            "http://localhost:3001/api/profile",
+            "https://engeesserver.vercel.app/api/profile",
             {
               headers: {
                 authorization: `${token}`,

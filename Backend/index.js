@@ -14,7 +14,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: 'https://engees-login-register.vercel.app', 
   // Allow requests from your React app's origin
 }));
 
