@@ -3,7 +3,7 @@ import Login from './Login';
 import Register from './Register';
 import '../App.css'; // Import CSS file
 
-const Controller = () => {
+const Controller = ({ handleLogin, isAuthenticated }) => {
   const [showLogin, setShowLogin] = useState(true);
 
   const handleToggleForm = () => {
@@ -31,7 +31,8 @@ const Controller = () => {
       {/* Content container */}
       <div className="controller-container">
         <div className="form-container">
-          {showLogin ? <Login /> : <Register />}
+          {showLogin ? <Login handleLogin={handleLogin}
+            isAuthenticated={isAuthenticated} /> : <Register />}
         </div>
       </div>
     </div>

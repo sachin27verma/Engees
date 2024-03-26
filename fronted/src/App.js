@@ -68,7 +68,8 @@ const App = () => {
             <Home userData={userData} handleLogout={handleLogout} />
           ) : (
             // <Navigate to="/login" />
-            <Controller/>
+            <Controller handleLogin={handleLogin}
+            isAuthenticated={isAuthenticated} />
           )
         }
       />

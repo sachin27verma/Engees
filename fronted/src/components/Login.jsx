@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import cors from 'cors';
 
 const Login = ({ handleLogin, isAuthenticated }) => {
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     // Check if user is already logged in
+
     if (isAuthenticated) {
       navigate('/'); // Redirect to home if already logged in
     }
@@ -16,10 +19,14 @@ const Login = ({ handleLogin, isAuthenticated }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    // cors=mode(no-core)
 
     // Create a data object with username and password
     const data = { username, password };
-
+    axios.defaults.baseURL = "https://";
+ axios.defaults.headers.post["Content-Type"] =
+        "application/json;charset=utf-8";
+      axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
     try {
       const response = await fetch("https://engeesserver.vercel.app/api/login", {
         method: "POST",
