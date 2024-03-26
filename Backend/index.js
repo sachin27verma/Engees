@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 
 // console.log(process.env.MONGODB_URL)
 
