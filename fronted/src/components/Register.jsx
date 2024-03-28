@@ -40,7 +40,7 @@ const Register = () => {
     const data = { username, password };
 
     try {
-      const response = await fetch("https://engeesserver.vercel.app/register", {
+      const response = await fetch("https://engeesserver.vercel.app/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
